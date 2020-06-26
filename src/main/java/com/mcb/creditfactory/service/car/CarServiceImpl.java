@@ -5,7 +5,7 @@ import com.mcb.creditfactory.external.ExternalApproveService;
 import com.mcb.creditfactory.model.Car;
 import com.mcb.creditfactory.model.Evaluation;
 import com.mcb.creditfactory.repository.CarRepository;
-import com.mcb.creditfactory.repository.EvaluationRepository;
+import com.mcb.creditfactory.service.GenericAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,16 +18,15 @@ public class CarServiceImpl implements CarService {
 
     @Autowired
     private CarRepository carRepository;
-    @Autowired
-    private EvaluationRepository evaluationRepository;
 
     @Override
     public boolean approve(CarDto dto) {
-        return approveService.approve(new CarAdapter(dto)) == 0;
+        return approveService.approve(new GenericAdapter<>(dto)) == 0;
     }
 
     @Override
     public Car save(Car car) {
+        // Присвоение оценкам id авто
         for (Evaluation eva: car.getEvaluations()
              ) {
             eva.setTheCarId(car);
@@ -54,7 +53,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public CarDto toDTO(Car car) {
-        System.out.println(evaluationRepository.findByTheCarIdOrderByDate(car).isEmpty());
         return new CarDto(
                 car.getId(),
                 car.getBrand(),

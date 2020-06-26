@@ -11,18 +11,21 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "CAR")
-public class Car extends Model{
+@Table(name = "AIRPLANE")
+public class Airplane extends Model{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String brand;
     private String model;
-    private Double power;
+    private String manufacturer;
 
     @Column(name = "year_of_issue")
     private Short year;
+    @Column(name = "fuel_capacity")
+    private Integer fuelCapacity;
+    private Integer seats;
 
-    @OneToMany(mappedBy = "theCarId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "theAirplaneId", cascade = CascadeType.ALL)
     List<Evaluation> evaluations;
 }

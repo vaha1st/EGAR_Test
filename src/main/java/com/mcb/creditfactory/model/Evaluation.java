@@ -25,7 +25,12 @@ public class Evaluation {
     private BigDecimal value;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "collateral_id")
+    @JoinColumn(name = "car_id")
     @JsonIgnore
     private Car theCarId;
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "airplane_id")
+    @JsonIgnore
+    private Airplane theAirplaneId;
 }

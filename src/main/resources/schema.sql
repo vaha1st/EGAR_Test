@@ -13,7 +13,7 @@ create table AIRPLANE (
   model VARCHAR2(200),
   manufacturer VARCHAR2(500),
   year_of_issue YEAR,
-  fuelCapacity INT,
+  fuel_capacity INT,
   seats INT
 );
 
@@ -21,6 +21,7 @@ create table EVALUATION (
     id IDENTITY primary key,
     assessment_date date,
     assessed_value DEC(20),
-    collateral_id bigint,
-    foreign key (collateral_id) references CAR (id)
+    car_id bigint,
+    airplane_id bigint,
+    foreign key (car_id) references CAR (id)
 )

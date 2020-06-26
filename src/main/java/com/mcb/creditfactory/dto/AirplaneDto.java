@@ -11,12 +11,14 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonTypeName("car")
-public class CarDto implements Collateral {
+@JsonTypeName("airplane")
+public class AirplaneDto implements Collateral {
     private Long id;
     private String brand;
     private String model;
-    private Double power;
+    private String manufacturer;
     private Short year;
+    private Integer fuelCapacity;
+    private Integer seats;
     private List<Evaluation> evaluations;
 }
